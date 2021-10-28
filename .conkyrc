@@ -1,0 +1,77 @@
+-- vim: ts=4 sw=4 noet ai cindent syntax=lua
+--[[
+Conky, a system monitor, based on torsmo
+
+Any original torsmo code is licensed under the BSD license
+
+All code written since the fork of torsmo is licensed under the GPL
+
+Please see COPYING for details
+
+Copyright (c) 2004, Hannu Saransaari and Lauri Hakkarainen
+Copyright (c) 2005-2012 Brenden Matthews, Philip Kovacs, et. al. (see AUTHORS)
+All rights reserved.
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+]]
+
+conky.config = {
+	own_window_argb_visual = true,
+	own_window_argb_value = 50,
+	double_buffer = true,
+	alignment = 'bottom_left',
+	background = false,
+	border_width = 1,
+	cpu_avg_samples = 2,
+	default_color = 'white',
+	default_outline_color = 'white',
+	default_shade_color = 'white',
+	draw_borders = false,
+	draw_graph_borders = true,
+	draw_outline = false,
+	draw_shades = false,
+	use_xft = true,
+	font = 'DejaVu Sans Mono:size=12',
+	gap_x = 5,
+	gap_y = 5,
+	minimum_height = 5,
+	minimum_width = 5,
+	net_avg_samples = 2,
+	no_buffers = true,
+	out_to_console = false,
+	out_to_stderr = false,
+	extra_newline = false,
+	own_window = true,
+	own_window_class = 'Conky',
+	own_window_type = 'desktop',
+	stippled_borders = 0,
+	update_interval = 1.0,
+	uppercase = false,
+	use_spacer = 'none',
+	show_graph_scale = false,
+	show_graph_range = false,
+	xinerama_head = 1
+}
+
+conky.text = [[
+${color grey}Date:$color ${time %a %e %B %G  %H:%M:%S} ${goto 500}${color grey}UpTime: $color  $uptime${color grey} ${goto 750}${color grey}CPU Temp:${color} ${hwmon 5 temp 1}°C
+$hr
+${color grey}Highest CPU:       ${goto 250} ${color grey}Highest MEM: ${goto 500}${color grey}MEM: $color  ${membar 3,100} $memperc% ${goto 750}($mem / $memmax)
+${color #ddaa00} ${top name 1}${top_mem cpu 1}     ${goto 250}${color #ddaa00} ${top_mem name 1}${top_mem mem 1} ${goto 500}${color grey}ROOT: ${color} ${fs_bar 3,100 /} ${fs_used_perc /}% ${goto 750}${color grey}(${fs_free /} / ${fs_size /})
+${color lightgrey} ${top name 2}${top cpu 2}      ${goto 250}${color lightgrey} ${top_mem name 2}${top_mem mem 2} ${goto 500}${color grey}USB1: ${color} ${fs_bar 3,100 /media/ludo/Pouet} ${fs_used_perc /media/ludo/Pouet}% ${goto 750}${color grey}(${fs_free /media/ludo/Pouet} / ${fs_size /media/ludo/Pouet})
+${color lightgrey} ${top name 3}${top cpu 3}      ${goto 250}${color lightgrey} ${top_mem name 3}${top_mem mem 3} ${goto 500}${color grey}USB2: ${color} ${fs_bar 3,100 /media/ludo/ludo_fat} ${fs_used_perc /media/ludo/ludo_fat}% ${goto 750}${color grey}(${fs_free /media/ludo/ludo_fat} / ${fs_size /media/ludo/ludo_fat})
+$hr
+${color grey}NET:$color ${goto 170}${upspeedgraph enp1s0 35,130 000000 ffffff} ${goto 490}${downspeedgraph enp1s0 35,130 000000 ffffff} ${goto 640}${color grey}CPU:${color} $cpu% ${goto 740}${cpugraph 35,130 000000 ffffff}
+${voffset -35}${color}Up: ${upspeed enp1s0} k/s ${goto 310}${color}Down: ${color }${downspeed enp1s0}k/s ${goto 640}$color(${freq_g cpu0}Ghz)
+]]
+
